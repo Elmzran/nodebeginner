@@ -11,10 +11,10 @@ function start(route, handle) {
 		console.log("Request for " + pathname + " received.");
 		
 		// Execute routing		
-		route(handle, pathname);
+		//route(handle, pathname);
 		
 		response.writeHead(200, {"Content-Type": "text/plain"});
-		response.write("Hello World");
+		response.write(route(handle, pathname));
 		response.end();	
 	}
 	// Initialize the HTTP server for the application project

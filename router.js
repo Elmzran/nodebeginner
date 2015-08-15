@@ -4,10 +4,11 @@ function route(handle, pathname) {
 	
 	// Handle any requests
 	if (typeof handle[pathname] === 'function') {
-		handle[pathname]();
+		return handle[pathname]();
 	}
 	else {
 		console.log("No request handler found for " + pathname);
+		return "404 Not found";
 	}
 }
 
