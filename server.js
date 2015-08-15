@@ -1,11 +1,14 @@
-// Import HTTP module
+// Import required modules
 var http = require("http");
+var url = require("url");
 
 // Package server code into a single function for exporting
 function start() {
 	// Function for handling server connections
 	function onRequest(request, response) {
-		console.log("Request received.");
+		// Parse the url for the pathname
+		var pathname = url.parse(request.url).pathname;
+		console.log("Request for " + pathname + " received.");
 		response.writeHead(200, {"Content-Type": "text/plain"});
 		response.write("Hello World");
 		response.end();	
