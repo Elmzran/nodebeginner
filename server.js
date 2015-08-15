@@ -11,11 +11,7 @@ function start(route, handle) {
 		console.log("Request for " + pathname + " received.");
 		
 		// Execute routing		
-		//route(handle, pathname);
-		
-		response.writeHead(200, {"Content-Type": "text/plain"});
-		response.write(route(handle, pathname));
-		response.end();	
+		route(handle, pathname, response);
 	}
 	// Initialize the HTTP server for the application project
 	http.createServer(onRequest).listen(8888);
