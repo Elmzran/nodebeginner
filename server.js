@@ -3,12 +3,16 @@ var http = require("http");
 var url = require("url");
 
 // Package server code into a single function for exporting
-function start() {
+function start(route) {
 	// Function for handling server connections
 	function onRequest(request, response) {
 		// Parse the url for the pathname
 		var pathname = url.parse(request.url).pathname;
 		console.log("Request for " + pathname + " received.");
+		
+		// Execute routing		
+		route(pathname);
+		
 		response.writeHead(200, {"Content-Type": "text/plain"});
 		response.write("Hello World");
 		response.end();	
