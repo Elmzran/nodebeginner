@@ -8,6 +8,7 @@ var handle = {}
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload
+handle["/show"] = requestHandlers.show;
 
 // Initialize the HTTP server
 server.start(router.route, handle);

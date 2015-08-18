@@ -1,5 +1,6 @@
 // Include Querystring for proper POST data formatting
-var querystring = require("querystring");
+var querystring = require("querystring"),
+	fs = require("fs");
 
 // Request handler functions
 function start(response, postData) {
@@ -28,10 +29,17 @@ function start(response, postData) {
 function upload(response, postData) {
 	console.log("Request handler 'upload' was called.");
 	response.writeHead(200, {"Content-Type": "text/plain"});
-	response.write("You've sent: " + querystring.parse(postData).text);
+	response.write("You've sent the text: " + querystring.parse(postData).text);
 	response.end();
+}
+
+function show(response) {
+	console.log("Request handlers 'show' was called.");
+	response.writeHead(200, {"Content-Type": "image/png"});
+	fs.createReadStream("./tmp/test.png").pipe(response);
 }
 
 // Export request handlers
 exports.start = start;
 exports.upload = upload;
+exports.show = show;
