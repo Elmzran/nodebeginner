@@ -10,6 +10,9 @@ function start(route, handle) {
 		var pathname = url.parse(request.url).pathname;
 		console.log("Request for " + pathname + " received.");
 		
+		// Set encoding
+		request.setEncoding("utf8");
+		
 		// Execute routing		
 		route(handle, pathname, response);
 	}
