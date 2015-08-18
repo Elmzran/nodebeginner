@@ -1,5 +1,5 @@
-// Include child process
-var exec = require("child_process").exec;
+// Include Querystring for proper POST data formatting
+var querystring = require("querystring");
 
 // Request handler functions
 function start(response, postData) {
@@ -28,7 +28,7 @@ function start(response, postData) {
 function upload(response, postData) {
 	console.log("Request handler 'upload' was called.");
 	response.writeHead(200, {"Content-Type": "text/plain"});
-	response.write("You've sent: " + postData);
+	response.write("You've sent: " + querystring.parse(postData).text);
 	response.end();
 }
 
