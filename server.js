@@ -13,20 +13,8 @@ function start(route, handle) {
 		var pathname = url.parse(request.url).pathname;
 		console.log("Request for " + pathname + " received.");
 		
-		// Set encoding
-		request.setEncoding("utf8");
-		
-		// Add listener for concating POST data
-		request.addListener("data", function(postDataChunk) {
-			postData += postDataChunk;
-			console.log("Received POST data chunk '" +
-			postDataChunk + "'.");
-		});
-		
-		// Add listener for calling router upon POST data concation completition
-		request.addListener("end", function() {
-			route(handle, pathname, response, postData);
-		});
+		// Route server
+		route(handle, pathname, response, request);
 	}
 	// Initialize the HTTP server for the application project
 	http.createServer(onRequest).listen(8888);
